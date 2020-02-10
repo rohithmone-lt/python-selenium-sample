@@ -1,5 +1,6 @@
 import unittest
 import time
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -32,30 +33,38 @@ class LTAutomate(unittest.TestCase):
         -------
         """
         # username: Username can be found at automation dashboard
-        username="{username}"  
+        username=os.getenv('LT_USERNAME') 
+
         # accessToken:  AccessToken can be genarated from automation dashboard or profile section
-        accessToken="{accessToken}"
+        accessToken=os.getenv('LT_ACCESS_KEY') 
         # gridUrl: gridUrl can be found at automation dashboard
         gridUrl = "hub.lambdatest.com/wd/hub"
-        
+        # get tunnel name
+        lambda_tunnel= False
+        if os.getenv('LT_TUNNEL_NAME') is not None: 
+           lambda_tunnel=True 
+
         desired_cap = {
-            'platform' : "win10", 
-            'browserName' : "chrome",
-            'version' :  "67.0",
+            'platform' : os.getenv('LT_PLATFORM') , 
+            'browserName' : os.getenv('LT_BROWSER_NAME') ,
+            'version' :  os.getenv('LT_BROWSER_VERSION') ,
             # Resolution of machine
-            "resolution": "1024x768", 
-            "name": "LambdaTest python google search test ",
-            "build": "LambdaTest python google search build",
+            "resolution": os.getenv('LT_RESOLUTION') ,
+            "name": "LambdaTest Python google search test "+ os.getenv('LT_BUILD_NUMBER'),
+            "build": os.getenv('LT_BUILD_NAME') ,
             "network": True,
             "video": True,
             "visual": True,
             "console": True,
+            "tunnel":lambda_tunnel,
         }
 
         # URL: https://{username}:{accessToken}@beta-hub.lambdatest.com/wd/hub
-        url = "https://"+username+":"+accessToken+"@"+gridUrl
+        url =  os.getenv('LT_GRID_URL') 
         
         print("Initiating remote driver on platfrom: "+desired_cap["platform"]+" browser: "+desired_cap["browserName"]+" version: "+desired_cap["version"])
+        print(url)
+        print("lambdaTunnel :"+str(lambda_tunnel))
         self.driver = webdriver.Remote(
             desired_capabilities=desired_cap,
             command_executor= url
