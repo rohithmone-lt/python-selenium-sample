@@ -51,7 +51,6 @@ class LTAutomate(unittest.TestCase):
             "video": True,
             "visual": True,
             "console": True,
-            "tunnel":lambda_tunnel,
         }
 
         url = "https://"+username+":"+accessToken+"@"+gridUrl
