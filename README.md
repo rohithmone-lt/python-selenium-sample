@@ -9,8 +9,24 @@ Python selenium automation sample test for [LambdaTest](https://www.lambdatest.c
 
 
 ### Configuring Test
-- Replace {username}  with your username 
-- Replace {accessToken}  with your username 
+### Set LambdaTest Username and Access Key in environment variables.
+
+<p align="center">
+   <b>For Linux/macOS:</b>:
+ 
+```
+export LT_USERNAME="YOUR_USERNAME"
+export LT_ACCESS_KEY="YOUR ACCESS KEY"
+```
+
+<p align="center">
+   <b>For Windows:</b>
+
+```
+set LT_USERNAME="YOUR_USERNAME"
+set LT_ACCESS_KEY="YOUR ACCESS KEY"
+```
+
 - List of supported platfrom, browser, version can be found at https://www.lambdatest.com/capabilities-generator/
 
 
