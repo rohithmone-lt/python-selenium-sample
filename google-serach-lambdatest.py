@@ -1,5 +1,6 @@
 import unittest
 import time
+import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -32,18 +33,18 @@ class LTAutomate(unittest.TestCase):
         -------
         """
         # username: Username can be found at automation dashboard
-        username="{username}"  
+        username=os.getenv('LT_USERNAME') 
+                
         # accessToken:  AccessToken can be genarated from automation dashboard or profile section
-        accessToken="{accessToken}"
+        accessToken=os.getenv('LT_ACCESS_KEY') 
         # gridUrl: gridUrl can be found at automation dashboard
-        gridUrl = "hub.lambdatest.com/wd/hub"
+        gridUrl = "stage-hub.lambdatest.com/wd/hub"
         
         desired_cap = {
             'platform' : "win10", 
             'browserName' : "chrome",
-            'version' :  "67.0",
+            'version' :  "latest-4",
             # Resolution of machine
-            "resolution": "1024x768", 
             "name": "LambdaTest python google search test ",
             "build": "LambdaTest python google search build",
             "network": True,
@@ -52,10 +53,9 @@ class LTAutomate(unittest.TestCase):
             "console": True,
         }
 
-        # URL: https://{username}:{accessToken}@beta-hub.lambdatest.com/wd/hub
         url = "https://"+username+":"+accessToken+"@"+gridUrl
         
-        print("Initiating remote driver on platfrom: "+desired_cap["platform"]+" browser: "+desired_cap["browserName"]+" version: "+desired_cap["version"])
+        print("Initiating remote driver on platfrom: "+desired_cap["platform"]+" browser: "+desired_cap["browserName"]+" version: "+desired_cap["version"] + ", url : "+url)
         self.driver = webdriver.Remote(
             desired_capabilities=desired_cap,
             command_executor= url
@@ -74,13 +74,13 @@ class LTAutomate(unittest.TestCase):
         """
         driver = self.driver
         print("Driver initiated sucessfully.  Navigate url")
+
+        val = 700 # in seconds
+        driver.implicitly_wait(val)
         driver.get("https://www.google.com/ncr")
 
+        element = driver.find_element_by_link_text("Courses")
         print("Searching lambdatest on google.com ")
-        time.sleep(8)
-        elem = driver.find_element_by_name("q")
-        elem.send_keys("lambdatest.com")
-        elem.submit()
 
         print("Printing title of current page :"+driver.title)
         driver.execute_script("lambda-status=passed")
