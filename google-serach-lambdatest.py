@@ -76,7 +76,7 @@ class LTAutomate(unittest.TestCase):
         driver = self.driver
         print("Driver initiated sucessfully.  Navigate url")
 
-        val = 700 # in seconds
+        val = 7 # in seconds
         driver.implicitly_wait(val)
         driver.get("https://www.google.com/ncr")
 
