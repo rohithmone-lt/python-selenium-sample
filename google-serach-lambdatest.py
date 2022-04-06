@@ -38,7 +38,7 @@ class LTAutomate(unittest.TestCase):
         # accessToken:  AccessToken can be genarated from automation dashboard or profile section
         accessToken=os.getenv('LT_ACCESS_KEY') 
         # gridUrl: gridUrl can be found at automation dashboard
-        gridUrl = "stage-hub.lambdatest.com/wd/hub"
+        gridUrl = os.getenv('LT_GRID_URL')
         
         desired_cap = {
             'platform' : "win10", 
