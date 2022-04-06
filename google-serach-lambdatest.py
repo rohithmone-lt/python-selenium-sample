@@ -53,7 +53,8 @@ class LTAutomate(unittest.TestCase):
             "console": True,
         }
 
-        url = "http://"+username+":"+accessToken+"@"+gridUrl
+        #url = "http://"+username+":"+accessToken+"@"+gridUrl
+        url = gridUrl
         
         print("Initiating remote driver on platfrom: "+desired_cap["platform"]+" browser: "+desired_cap["browserName"]+" version: "+desired_cap["version"] + ", url : "+url)
         self.driver = webdriver.Remote(
