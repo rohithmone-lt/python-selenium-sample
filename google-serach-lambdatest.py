@@ -48,6 +48,7 @@ class LTAutomate(unittest.TestCase):
             "name": "LambdaTest python google search test ",
             "build": "LambdaTest python google search build",
             "network": True,
+            "tunnel":True,
             "video": True,
             "visual": True,
             "console": True,
@@ -80,7 +81,7 @@ class LTAutomate(unittest.TestCase):
         driver.implicitly_wait(val)
         driver.get("https://www.google.com/ncr")
 
-        element = driver.find_element_by_link_text("Courses")
+#       element = driver.find_element_by_link_text("Courses")
         print("Searching lambdatest on google.com ")
 
         print("Printing title of current page :"+driver.title)
