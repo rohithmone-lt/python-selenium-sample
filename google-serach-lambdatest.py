@@ -34,7 +34,7 @@ class LTAutomate(unittest.TestCase):
         """
         # username: Username can be found at automation dashboard
         username=os.getenv('LT_USERNAME') 
-                
+        buildname=os.getenv('LT_BUILD_NAME') 
         # accessToken:  AccessToken can be genarated from automation dashboard or profile section
         accessToken=os.getenv('LT_ACCESS_KEY') 
         # gridUrl: gridUrl can be found at automation dashboard
@@ -46,7 +46,7 @@ class LTAutomate(unittest.TestCase):
             'version' :  "latest-4",
             # Resolution of machine
             "name": "LambdaTest python google search test ",
-            "build": "LambdaTest python google search build",
+            "build": buildname,
             "network": True,
             "tunnel":True,
             "video": True,
